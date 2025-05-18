@@ -1,52 +1,83 @@
-import React from 'react';
-import {
-  CDBSidebar,
-  CDBSidebarContent,
-  CDBSidebarHeader,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-} from 'cdbreact';
-import { NavLink } from 'react-router-dom';
-import { Navbar } from 'react-bootstrap'; 
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { Navbar, Nav as BootstrapNav } from 'react-bootstrap';
+import { FaHome, FaList, FaUserCog, FaBars, FaChartPie } from 'react-icons/fa';
 import logo from '../static/logo.png';
 import "../App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Nav = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" expand="lg" id="my-nav">
-        <Navbar.Brand className="app-logo" href="/">
-          <img
-            src={logo}
-            width="40"
-            height="50"
-            className="d-inline-block align-center"
-            alt="React Bootstrap logo"
-          />{' '}
-          Student Management System
-        </Navbar.Brand>
+    <>
+      <Navbar bg="dark" variant="dark" expand="lg" className="navbar fixed-top">
+        <div className="d-flex justify-content-between w-100 align-items-center">
+          <Navbar.Brand as={Link} to="/" className="app-logo">
+            <img
+              src={logo}
+              width="40"
+              height="40"
+              className="d-inline-block align-center"
+              alt="School Logo"
+            />
+            Student Management
+          </Navbar.Brand>
+          
+          <button 
+            className="btn btn-link text-light toggle-sidebar d-lg-none" 
+            onClick={toggleSidebar}
+          >
+            <FaBars size={20} />
+          </button>
+        </div>
       </Navbar>
-      <div className='sidebar'>
-        <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
-          <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
-            Navigation
-          </CDBSidebarHeader>
-          <CDBSidebarContent>
-            <CDBSidebarMenu>
-              <NavLink exact="true" to="/" className="nav-link">
-                <CDBSidebarMenuItem icon="home">Home</CDBSidebarMenuItem>
-              </NavLink>  
-              <NavLink exact="true" to="/students" className="nav-link">
-                <CDBSidebarMenuItem icon="list">Students List</CDBSidebarMenuItem>
-              </NavLink>
-              <NavLink exact="true" to="/manage" className="nav-link">
-                <CDBSidebarMenuItem icon="user">Manage Students</CDBSidebarMenuItem>
-              </NavLink>
-            </CDBSidebarMenu>
-          </CDBSidebarContent>
-        </CDBSidebar>
+      
+      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <BootstrapNav className="flex-column mt-3">
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => 
+              isActive ? "nav-link active d-flex align-items-center" : "nav-link d-flex align-items-center"
+            }
+            end
+          >
+            <FaHome className="me-3" /> Home
+          </NavLink>
+          
+          <NavLink 
+            to="/dashboard" 
+            className={({ isActive }) => 
+              isActive ? "nav-link active d-flex align-items-center" : "nav-link d-flex align-items-center"
+            }
+          >
+            <FaChartPie className="me-3" /> Dashboard
+          </NavLink>
+          
+          <NavLink 
+            to="/students" 
+            className={({ isActive }) => 
+              isActive ? "nav-link active d-flex align-items-center" : "nav-link d-flex align-items-center"
+            }
+          >
+            <FaList className="me-3" /> Students List
+          </NavLink>
+          
+          <NavLink 
+            to="/manage" 
+            className={({ isActive }) => 
+              isActive ? "nav-link active d-flex align-items-center" : "nav-link d-flex align-items-center"
+            }
+          >
+            <FaUserCog className="me-3" /> Manage Students
+          </NavLink>
+        </BootstrapNav>
       </div>
-    </div>
+    </>
   );
 }
 

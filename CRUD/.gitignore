@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Django
+*.log
+*.pot
+*.pyc
+*.mo
+*.sqlite3
+*.db
+db.sqlite3
+.env
+.env.*
+
+# Django media/static files
+/media
+/staticfiles
+/static/
+
+# Environment
+venv/
+env/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Pytest
+.cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Migrations (optional, depends on your team's policy)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# JetBrains IDEs
+.idea/
+
+# MyPy
+.mypy_cache/
+
+# PyCharm
+*.iml
+*.ipr
+*.iws
+
+# Node (if using frontend with React)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+# Ignore SQLite database
+db.sqlite3
+db.sqlite3-journal
+backend/db.sqlite3
+backend/db.sqlite3-journal
+
